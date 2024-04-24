@@ -23,4 +23,4 @@ This project will cover Python basic and advanced topics.
 - Memory management
 
 ## Instructions to run
-python <script_name> <argument>
+python main.py <file_option> <switch_option>
