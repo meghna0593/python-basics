@@ -1,6 +1,6 @@
 import sys
 
-def switch_case(case):
+def builtin_switch(case):
     while True:
         if case == 'zip':
             # Zip example
@@ -209,15 +209,3 @@ def switch_case(case):
         else:
             print("Option does not exist")
             break
-
-
-# Main
-def main(arg):
-    switch_case(arg)
-
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python built_in_func.py <argument>")
-        sys.exit(1)
-    arg = sys.argv[1]
-    main(arg)
