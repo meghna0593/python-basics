@@ -1,2 +1,23 @@
-# python-basics
-A personal project to go over Python basics time and again. Rather than relying on online tutorials, I prefer revisiting my own code for a more tailored learning experience. This repository acts as a convenient reference point for me to revisit whenever required.
+# Python Basics: A Personal Project
+
+This project will cover Python 3 basic and advanced topics. 
+
+## Content
+- Buit-in Functions
+- Data Structures
+- String Methods
+- OOP
+- Metaclasses
+- Generators and Iterators
+- Lambda
+- Decorator
+- Iteratable Objects (List, Tuple, Set, Dictionary)
+- Collections
+- Operators
+- Context Manager
+- Async
+- Concurrency
+- Magic Methods
+- Data Serialization
+- Metaprogramming
+- Memory management
