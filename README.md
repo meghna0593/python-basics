@@ -1,8 +1,8 @@
 # Python Basics: A Personal Project
 
-This project will cover Python 3 basic and advanced topics. 
+This project will cover Python basic and advanced topics. 
 
-## Content
+## Topics
 - Buit-in Functions
 - Data Structures
 - String Methods
@@ -21,3 +21,6 @@ This project will cover Python 3 basic and advanced topics.
 - Data Serialization
 - Metaprogramming
 - Memory management
+
+## Instructions to run
+python <script_name> <argument>
