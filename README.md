@@ -5,9 +5,9 @@ This project will cover Python basic and advanced topics.
 ## Topics
 - Buit-in Functions
 - Data Structures
+- Algorithms
 - String Methods
 - OOP
-- Metaclasses
 - Generators and Iterators
 - Lambda
 - Decorator
@@ -17,6 +17,7 @@ This project will cover Python basic and advanced topics.
 - Context Manager
 - Async
 - Concurrency
+- Metaclasses
 - Magic Methods
 - Data Serialization
 - Metaprogramming
