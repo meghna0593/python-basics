@@ -70,7 +70,44 @@ def ds_switch(case):
             print(sorted_tuple)  # Output: (1, 1, 1, 2, 2, 2, 3, 3, 3)
 
             break
-        elif case == 'namedtuple':
+        elif case == 'namedtuple': # factory function for creating tuple subclasses with named fields
+            # Named tuples are particularly useful when you have data with a clear structure 
+            # and want to provide semantic meaning to each element
+            from collections import namedtuple
+
+            # a namedtuple with fields 'x' and 'y'
+            Point = namedtuple('Point', ['x', 'y']) # O(n)
+
+            # instantiating 
+            p1 = Point(1, 2) # O(1)
+            print(p1.x, p1.y) # O(1)
+
+            # unpacking
+            x, y = p1 # O(1)
+
+            # membership # O(n)
+            print('x' in p1)  # Output: True
+            print('z' in p1)  # Output: False
+            print(1 in p1)  # Output: True
+            print("2" if p1.__contains__(2) else "N/A")
+
+            # replacing
+            p2 = p1._replace(y=5) # O(n)
+            print(p1, p2) # Output: Point(x=1, y=2) Point(x=1, y=5)
+
+            # converting to dictionary
+            p_dict = p1._asdict() # O(n)
+            print(p_dict) # Output: {'x': 1, 'y': 2}
+
+            # equality
+            print(p1 == p2) # Output: False # O(n)
+
+            # hashing
+            print(hash(p1)) # Ouput: -3550055125485641917 # O(n)
+
+            # string repr
+            print(repr(p1)) # Output: Point(x=1, y=2)
+            print(type(repr(p1))) # Output: <class 'str'>
             break
         elif case == 'dict':
             break
