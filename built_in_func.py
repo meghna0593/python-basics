@@ -1,5 +1,3 @@
-import sys
-
 def builtin_switch(case):
     while True:
         if case == 'zip':
@@ -61,7 +59,7 @@ def builtin_switch(case):
 
             print(callable(example_func))  # Output: True
             break
-        elif case == "id":
+        elif case == "id": # returns the memory address of the object which is unique but not necessarily consistent between runs
             # Id example
             x = 42
             print(id(x))  # Output: Unique identifier for x
@@ -115,7 +113,7 @@ def builtin_switch(case):
             nested_list = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
             print(nested_list[1][0:2])  # Output: [4, 5]            
             break
-        elif case =="hash":
+        elif case =="hash": # returns a hash value used for quick comparisons and storage of objects in hash-based data structures like dictionaries and sets
             print(hash("Hello, world!"))  # Output: Unique hash value
             break
         elif case =="attr":
