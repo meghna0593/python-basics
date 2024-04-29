@@ -4,6 +4,12 @@ def ds_switch(case):
             # create
             my_list = ["0",1,2,3,4]
             print(my_list[2:7]) # Output: [2, 3, 4]
+
+            # unpacking operator
+            first, *rest = my_list
+            print(rest)  # Output: [1,2,3,4]
+            print(*my_list) # Output: 0 1 2 3 4 #used in function calls
+
             my_list.append(5) # O(n)
             my_list.extend([6]) # O(k), k is the length of the iterable being extended
             my_list.pop(0) # O(n); however popping the element from the end of the list takes constant time O(1)
@@ -44,6 +50,12 @@ def ds_switch(case):
         elif case == 'tuple':
             my_tuple = (1, 2, 3)  # O(n)
             another_tuple = tuple([4, 5, 6])
+
+            # unpacking operator
+            first, *rest = my_tuple
+            print(rest)  # Output: [2,3]
+            print(*my_tuple) # Output: 1 2 3
+
             print(my_tuple[0]) # Output: 1  # O(1)
             print(my_tuple[1:4]) # Output: (2, 3)  # O(k), k being the size of the slice
             print(len(my_tuple)) # Output: 3 # O(1), the length of the tuple is stored internally
@@ -86,10 +98,11 @@ def ds_switch(case):
             x, y = p1 # O(1)
 
             # membership # O(n)
-            print('x' in p1)  # Output: True
+            print('x' in p1)  # Output: False
             print('z' in p1)  # Output: False
             print(1 in p1)  # Output: True
-            print("2" if p1.__contains__(2) else "N/A")
+            print('x' in Point._fields) # Output: True
+            print("2" if p1.__contains__(2) else "N/A") # Output: 2
 
             # replacing
             p2 = p1._replace(y=5) # O(n)
