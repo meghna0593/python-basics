@@ -123,6 +123,96 @@ def ds_switch(case):
             print(type(repr(p1))) # Output: <class 'str'>
             break
         elif case == 'dict':
+            my_dict = {'a': 1, 'b': 2, 'c': 3}
+            my_dict = dict(a=1,b=2,c=3)
+
+            # Accessing an item
+            print(my_dict['a']) # Output: 1
+            print(my_dict.get('d',0))  # Output: 0
+
+            # Inserting / Updating an item
+            my_dict['d'] = 4
+            my_dict['b'] = 20
+            print(my_dict) # Output: {'a': 1, 'b': 20, 'c': 3, 'd': 4}
+
+            # Deleting an item
+            del my_dict['a'] # {'b': 20, 'c': 3, 'd': 4}
+
+            # removing items
+            my_dict.pop('b')
+            print(my_dict) # {'c': 3, 'd': 4}
+            my_dict['b'] = 20
+            print(my_dict.popitem()) # removes the last inserted item # ('b', 20)
+            print(my_dict) # {'c': 3, 'd': 4}
+            
+            my_dict['b'] = 20
+            # Membership
+            print('a' in my_dict) # Output: False
+
+
+            for key, value in my_dict.items():
+                print(key, value) # Output: b 20 / c 3 / d 4
+            print(my_dict.keys()) # Output: dict_keys(['b', 'c', 'd'])
+            print(my_dict.values()) # Output: dict_values([20, 3, 4])
+            print(len(my_dict)) # Output: 3
+
+            # copying
+            copied_dict = my_dict.copy()
+            print(copied_dict) # {'b': 20, 'c': 3, 'd': 4}
+            copied_dict['a'] = 1
+            my_dict['b'] = 2
+            print(copied_dict, my_dict) # Output: {'b': 20, 'c': 3, 'd': 4, 'a': 1} {'b': 2, 'c': 3, 'd': 4}
+            
+            # copying mutable objects; shallow copy
+            original_dict = {'a': [1, 2, 3], 'b': {'x': 10, 'y': 20}}
+            copied_dict = original_dict.copy()
+            copied_dict['a'].append(4)
+            original_dict['a'].append(5)
+            print(original_dict) # Output: {'a': [1, 2, 3, 4, 5], 'b': {'x': 10, 'y': 20}}
+            print(copied_dict) # Output: {'a': [1, 2, 3, 4, 5], 'b': {'x': 10, 'y': 20}}
+
+            original_dict.clear()
+
+            # merging
+            print(my_dict) # {'b': 2, 'c': 3, 'd': 4}
+            my_dict.update(copied_dict) # if same keys exist in both dictionaries, the corresponding values in my_dict are overwritten by the values from copied_dict
+            print(my_dict) # Output: {'b': {'x': 10, 'y': 20}, 'c': 3, 'd': 4, 'a': [1, 2, 3, 4, 5]}
+
+            # merging using **
+            dict1 = {'a': 1, 'b': 2}
+            dict2 = {'b': 3, 'c': 4}
+            merged_dict = {**dict1, **dict2} # Merge dict2 into dict1
+            print(merged_dict) # Output: {'a': 1, 'b': 3, 'c': 4}
+            
+            # unpacking
+            def unpack(c, d,**_):
+                print(c,d) # Output: 3 4
+            unpack(**my_dict) # Equivalent to unpack(a=[1, 2, 3, 4, 5], .., d=4)
+
+            # creating dictionary using comprehension
+            squares = {x:x*x for x in range(5)}
+            print(squares) # Output: {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}
+            
+            # filter
+            squares = {x[0]:x[1] for x in squares.items() if x[0]%2==0}
+            print(squares) # Output: {0: 0, 2: 4, 4: 16}
+
+            print({k for k in my_dict}) # Output: {'a', 'c', 'b', 'd'}
+
+            # map
+            my_dict = {'a': 1, 'b': 2}
+            my_dict = dict(map(lambda item: (item[0], item[1]*2), my_dict.items()))
+            print(my_dict) # Output: {'a': 2, 'b': 4}
+            
+            another_dict = {k: lambda x: x*x for k in my_dict} # {a:<ref to lambda>, b:<ref to lambda>}
+            print(another_dict['a'](5)) # Output: 25
+
+            x = ('key1', 'key2', 'key3')
+            y = 0
+            thisdict = dict.fromkeys(x, y) # {'key1': 0, 'key2': 0, 'key3': 0}
+            thisdict = dict.fromkeys(x) # {'key1': None, 'key2': None, 'key3': None}
+            x = thisdict.setdefault("key4", 0) # Output: 0
+
             break
         elif case == 'ord_dict':
             break
