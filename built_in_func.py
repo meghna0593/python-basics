@@ -221,6 +221,25 @@ def builtin_switch(case):
             print(middle) #Output: [2,3]
             
             break
+        elif case == "lambda":
+            add = lambda x,y=0 : x+y
+            print(add(4,5)) # Output: 9
+            print(add(4)) # Output: 4
+
+            concatenate = lambda *args: ' '.join(args)
+            print(concatenate("Hello", "World")) # Output: Hello World
+
+            is_even = lambda x: x if x%2==0 else -1
+            print(is_even(5)) # Output: -1
+
+            numbers = [1,2,3,4,5]
+            mapped_numbers = list(map(lambda x: x*x, numbers))
+            print(mapped_numbers) # Output: [1, 4, 9, 16, 25]
+
+            students = [('Alice', 20), ('Bob', 18), ('Charlie', 22)]
+            sorted_students = sorted(students, key=lambda x: x[1])  # Sort by age
+            print(sorted_students) # Output: [('Bob', 18), ('Alice', 20), ('Charlie', 22)]
+            break
         else:
             print("Option does not exist")
             break
