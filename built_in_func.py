@@ -204,6 +204,23 @@ def builtin_switch(case):
             result = reduce(square, numbers, 0)
             print(result) # Output: 55 (0 + 1^2 + 2^2 + 3^2 + 4^2 + 5^2 = 1 + 1 + 4 + 9 + 16 + 25 = 55)
             break
+        elif case == "spl_symbols":
+            # throwaway variable
+            _, y = (3, 4)
+            print(y) # Ouput: 4
+
+            for _ in range(5):
+                print("Hello!") # Output: Hello!
+
+            # name of a module or name of a class
+            print(__name__)  # Output: built_in_func
+
+            # unpacking operators
+            num = [1,2,3,4]
+            first, *middle, last = num
+            print(middle) #Output: [2,3]
+            
+            break
         else:
             print("Option does not exist")
             break
