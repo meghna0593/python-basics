@@ -1,6 +1,7 @@
 import sys
 from built_in_func import builtin_switch
 from data_structures import ds_switch
+from sorting_algorithm import sorting_algo
 
 def main(option_file, option_arg):
     # Call switch case functions based on the input argument
@@ -8,6 +9,8 @@ def main(option_file, option_arg):
         builtin_switch(option_arg)
     elif option_file == 'ds':
         ds_switch(option_arg)
+    elif option_file == 'sort':
+        sorting_algo(option_arg)
     else:
         print(f"Invalid argument: {option_file}")
 
