@@ -52,8 +52,28 @@ def selection_sort():
     print(f"Selection Sort: {numbers}")
 
 
+"""
+Insertion Sort
+Used in a specific scenario where you have a stream of integers or where the entire list is not visible in the beginning
+Can't make use of merge or quick sort in such a case
+Called insertion sort because elements are inserted one by one and compared each time
+Worst Case: Time complexity is O(n^2)
+
+Reference:
+https://youtu.be/8mJ-OhcfpYg?si=kA_GaqYuIXdZjI_x
+https://youtu.be/R_wDA-PmGE4?si=0APVJ42t-pOJ9DWM
+https://youtu.be/hQEVUsflZiE?si=Lvov7kaSiA36IUHj
+"""
 def insertion_sort():
-    pass
+    numbers, n = get_input()
+
+    for i in range(1, n):
+        for j in range(i,0,-1):
+            if numbers[j] < numbers[j-1]:
+                numbers[j], numbers[j-1] = numbers[j-1], numbers[j]
+            else:
+                break
+    print(numbers)
 
 
 def quick_sort():
