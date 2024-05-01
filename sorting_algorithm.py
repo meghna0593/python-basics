@@ -1,5 +1,5 @@
 def get_input():
-    input_list = [6,5,4,3,2,1]
+    input_list = [6, 5, 4, 3, 2, 1]
     return input_list, len(input_list)
 """
 Bubble Sort (Ascending Order)
@@ -76,8 +76,63 @@ def insertion_sort():
     print(numbers)
 
 
+def qs_partition(arr, left, right):
+    i = left
+    j = right - 1
+    initial_pivot = right
+
+    while i < j:
+        while i < right and arr[i] < arr[initial_pivot]: # i is looking for an element larger than pivot
+            i+=1
+        while j > left and arr[j] > arr[initial_pivot]: # j is looking for an element smaller than pivot
+            j-=1
+        
+        if i < j:
+            arr[i], arr[j] = arr[j], arr[i]
+    
+    # i==j or j>i
+    arr[i], arr[initial_pivot] = arr[initial_pivot], arr[i]
+
+    return i # the actual pivot
+
+
+def quick_sort_helper(arr, left, right):
+    if left < right:
+        pivot = qs_partition(arr, left, right)
+        quick_sort_helper(arr, left, pivot-1)
+        quick_sort_helper(arr, pivot + 1, right)
+
+"""
+Quick Sort
+Choose a pivot element
+All elements before a pivot element are smaller, all elements after a pivot element are larger. 
+Pivot element is always at the right place
+
+Divide and Conquer strategy: divides a problem into sub-problems and solves those sub-problems 
+Not the fastest sorting algorithm
+Worst Case: O(n^2)
+Best and Avg case: O(nlogn)
+
+Reference:
+https://www.youtube.com/watch?v=Vtckgz38QHs
+https://youtu.be/9KBwdDEwal8?si=WyLnOXkggnxOPe-C
+
+"""
 def quick_sort():
-    pass
+    """
+    Gist of how QS works:
+    i is the first element
+    j is the element left of the default pivot (last ele in our case)
+    pivot is the last element (initially)
+
+    i checks for a value greater than pivot
+    j checks for a value lesser than pivot
+    when found, swap i and j
+    when i==j or j<i: swap pivot element and i element
+    """
+    numbers, n = get_input()
+    quick_sort_helper(numbers, 0, n-1)
+    print(numbers)
 
 
 def merge_sort():
