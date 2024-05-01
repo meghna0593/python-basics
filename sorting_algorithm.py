@@ -1,9 +1,13 @@
+def get_input():
+    input_list = [6,5,4,3,2,1]
+    return input_list, len(input_list)
 """
 Bubble Sort (Ascending Order)
-if n is the length of numbers, there will be n-1 pairs for comparison
 The largest element gets bubbled up each iteration; hence there will be n-1 total runs
+if n is the length of numbers, there will be n-1 pairs for comparison
 Best Case: [1 2 3 4 5] => Time complexity is O(n); You iterate once, see there are no swaps and get out of the loop
 Worst Case: [5 4 3 2 1] => Time complexity is O(n^2)
+In place space complexity
 Input dependent: Gives different TC for different types of input
 
 Reference: 
@@ -11,8 +15,8 @@ https://www.youtube.com/watch?v=Dv4qLJcxus8
 https://youtu.be/KI3xrHqfWDc?si=y_zLfVpbe5Akb7c_
 """
 def bubble_sort():
-    numbers = [6,5,4,3,2,1]
-    n = len(numbers)
+    numbers, n = get_input()
+
     swap = False # gives a best case of O(n)
     for i in range(n-1,0,-1): # n-1 runs
         swap = False 
@@ -27,14 +31,25 @@ def bubble_sort():
 
 """
 Selection Sort
-First minimum at index 0, second minimum at index 1 and so on.
+First minimum at index 0, second minimum at index 1 and so on. The minimum element's index is selected every iteration
+Best, Avg, Worst case: Time complexity is O(n^2)
+In place space complexity 
 
 Reference:
 https://youtu.be/EwjnF7rFLns?si=qdMtY4ZCY6KQmqJI
 https://youtu.be/CkF9Cbtl4Zk?si=1M0gnUfWPLdSwO7Z
 """
 def selection_sort():
-    pass
+    numbers, n = get_input()
+    
+    for i in range(n-1):
+        minIdx = i
+        for j in range(i+1,n):
+            if numbers[minIdx] > numbers[j]:
+                minIdx = j
+        numbers[i], numbers[minIdx] = numbers[minIdx], numbers[i]
+    
+    print(f"Selection Sort: {numbers}")
 
 
 def insertion_sort():
