@@ -78,14 +78,14 @@ def insertion_sort():
 
 def qs_partition(arr, left, right):
     i = left
-    j = right - 1
     initial_pivot = right
+    j = right - 1
 
     while i < j:
-        while i < right and arr[i] < arr[initial_pivot]: # i is looking for an element larger than pivot
-            i+=1
-        while j > left and arr[j] > arr[initial_pivot]: # j is looking for an element smaller than pivot
-            j-=1
+        while i < right and arr[i] < arr[initial_pivot]: # i is looking for an element greater than pivot
+            i += 1
+        while j > left and arr[j] > arr[initial_pivot]: # j is looking for an element lesser than pivot
+            j -= 1
         
         if i < j:
             arr[i], arr[j] = arr[j], arr[i]
@@ -95,11 +95,10 @@ def qs_partition(arr, left, right):
 
     return i # the actual pivot
 
-
 def quick_sort_helper(arr, left, right):
     if left < right:
         pivot = qs_partition(arr, left, right)
-        quick_sort_helper(arr, left, pivot-1)
+        quick_sort_helper(arr, left, pivot - 1)
         quick_sort_helper(arr, pivot + 1, right)
 
 """
@@ -138,6 +137,17 @@ def quick_sort():
 def merge_sort():
     pass
 
+def heap_sort():
+    pass
+
+def tim_sort():
+    pass
+
+def bogo_sort():
+    pass
+
+def radix_sort():
+    pass
 
 def sorting_algo(case):
     while True:
@@ -155,6 +165,18 @@ def sorting_algo(case):
             break
         elif case == 'merge':
             merge_sort()
+            break
+        elif case == 'heap':
+            heap_sort()
+            break
+        elif case == 'tim':
+            tim_sort()
+            break
+        elif case == 'bogo':
+            bogo_sort()
+            break
+        elif case == 'radix':
+            radix_sort()
             break
         else:
             print("Option does not exist")
