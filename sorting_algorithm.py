@@ -1,5 +1,5 @@
 def get_input():
-    input_list = [6, 5, 4, 3, 2, 1]
+    input_list = [3, 6, 8, 10, 1, 2, 1]
     return input_list, len(input_list)
 """
 Bubble Sort (Ascending Order)
@@ -7,7 +7,7 @@ The largest element gets bubbled up each iteration; hence there will be n-1 tota
 if n is the length of numbers, there will be n-1 pairs for comparison
 Best Case: [1 2 3 4 5] => Time complexity is O(n); You iterate once, see there are no swaps and get out of the loop
 Worst Case: [5 4 3 2 1] => Time complexity is O(n^2)
-In place space complexity
+In place space complexity O(1)
 Input dependent: Gives different TC for different types of input
 
 Reference: 
@@ -33,7 +33,7 @@ def bubble_sort():
 Selection Sort
 First minimum at index 0, second minimum at index 1 and so on. The minimum element's index is selected every iteration
 Best, Avg, Worst case: Time complexity is O(n^2)
-In place space complexity 
+In place space complexity O(1)
 
 Reference:
 https://youtu.be/EwjnF7rFLns?si=qdMtY4ZCY6KQmqJI
@@ -58,6 +58,7 @@ Used in a specific scenario where you have a stream of integers or where the ent
 Can't make use of merge or quick sort in such a case
 Called insertion sort because elements are inserted one by one and compared each time
 Worst Case: Time complexity is O(n^2)
+In place space complexity O(1)
 
 Reference:
 https://youtu.be/8mJ-OhcfpYg?si=kA_GaqYuIXdZjI_x
@@ -108,9 +109,11 @@ All elements before a pivot element are smaller, all elements after a pivot elem
 Pivot element is always at the right place
 
 Divide and Conquer strategy: divides a problem into sub-problems and solves those sub-problems 
-Not the fastest sorting algorithm
 Worst Case: O(n^2)
 Best and Avg case: O(nlogn)
+Quick Sort is an in-place sorting algorithm. Hence, the space complexity is O(log n) for the recursive calls made on the call stack.
+However, it's important to note that Quick Sort has a worst-case space complexity of O(n) due to the recursive calls potentially 
+consuming the entire stack space in scenarios where the array is partitioned in a highly unbalanced manner.
 
 Reference:
 https://www.youtube.com/watch?v=Vtckgz38QHs
@@ -134,12 +137,76 @@ def quick_sort():
     print(numbers)
 
 
+def merge_sort_helper(arr):
+    if len(arr) <= 1:
+        return arr
+    
+    mid = len(arr) // 2
+    left_arr = arr[:mid]
+    right_arr = arr[mid:]
+
+    # recursion
+    merge_sort_helper(left_arr)
+    merge_sort_helper(right_arr)
+
+    # merging
+    i = j = k = 0 # pointers for left_arr, right_arr and arr
+    while i < len(left_arr) and j < len(right_arr):
+        if left_arr[i] < right_arr[j]:
+            arr[k] = left_arr[i]
+            i += 1
+        else:
+            arr[k] = right_arr[j]
+            j += 1
+        k += 1
+    
+    # If there are any remaining elements in left_arr
+    while i < len(left_arr):
+        arr[k] = left_arr[i]
+        i += 1
+        k += 1
+
+    # If there are any remaining elements in right_arr
+    while j < len(right_arr):
+        print("j loop",arr,right_arr)
+        arr[k] = right_arr[j]
+        j += 1
+        k += 1
+
+"""
+Merge Sort
+Split list in half by divide and conquer method and evenually merge the halves after sorting them
+Best, Avg and Worst Case: O(n logn)
+Space Complexity: O(n) ; In each recursive call, the algorithm creates temporary arrays to store 
+the divided halves of the input array. The size of these temporary arrays is proportional to the size 
+of the input array.
+
+Reference:
+https://www.youtube.com/watch?v=3j0SWDX4AtU
+https://youtu.be/_trEkEX_-2Q?si=GJ4SNrEivg2xoDQl
+"""
 def merge_sort():
-    pass
+    numbers, _ = get_input()
+    merge_sort_helper(numbers)
+    print(numbers)
+
 
 def heap_sort():
     pass
 
+"""
+Tim Sort
+Insertion Sort + Merge Sort 
+Divides the entire array into sub arrays of a particular size. The sub groups are called runs
+The runs are sorted using insertion sort since it works best when array size is small
+Merge logic of merge sort is used to merge these runs. 
+Merge method performs well when the size of sub-arrays is a power of two. So the run size is usually 
+picked between 32 and 64
+
+Reference:
+https://youtu.be/GhP5WbE4GYo?si=4IVNeOhcsXqWCXiD
+https://youtu.be/6lkH8uvatTY?si=OPiCevSHmMKRd24h
+"""
 def tim_sort():
     pass
 
