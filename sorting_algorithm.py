@@ -1,5 +1,5 @@
 def get_input():
-    input_list = [3, 6, 8, 10, 1, 2, 1]
+    input_list = [3,5,4,1,6,2]
     return input_list, len(input_list)
 
 
@@ -203,7 +203,7 @@ def trickle_down(arr, i, upper):
     right_child = 2*i+2
 
     if left_child < upper and arr[left_child] > arr[largest]:
-        largest = left_child
+        largest = left_child 
 
     if right_child < upper and arr[right_child] > arr[largest]:
         largest = right_child
@@ -211,6 +211,22 @@ def trickle_down(arr, i, upper):
     if largest != i: # not the same element
         swap(arr, i, largest)
         trickle_down(arr, largest, upper)
+
+def trickle_down_iterative(arr, i, upper):
+    largest = i
+    while True:
+        left = i*2+1
+        right = i*2+2
+
+        if left < upper and arr[left] > arr[largest]:
+            largest = left
+        if right < upper and arr[right] > arr[largest]:
+            largest = right
+        if largest != i:
+            swap(arr, i, largest)
+            i = largest
+        else:
+            break
 
 """
 Heap Sort
@@ -241,21 +257,25 @@ https://youtu.be/laYrbOAmuvQ?si=ars9XzaSdBC5qOL9 (heap sort implementation)
 """
 def heap_sort():
     arr, n = get_input()
-    
-    # build a max heap
-    for i in range(n // 2 - 1, -1, -1):
-        trickle_down(arr, i, n)
+    print("Before creating max heap: ",arr)
 
+    # build a max heap
+    for i in range(n // 2 - 1, -1, -1): # loop until the last parent node
+        # trickle_down(arr, i, n)
+        trickle_down_iterative(arr, i, n)
+
+    print("Afer creating max heap: ",arr)
+
+    # sorting
     # extract elements one by one, with root
     # 1. Swap root with last leaf
     # 2. trickle down / heapify
-    for i in range(n - 1, 0, -1):
-        swap(arr, 0, i)
-        trickle_down(arr, 0, i)
+    for i in range(n - 1, 0, -1): 
+        swap(arr, 0, i) # here we swap the first element with the i value because the i value will always be the greater value in that iteration
+        # trickle_down(arr, 0, i) # here we heapify to get the greatest value of that iteration in idx 0
+        trickle_down_iterative(arr, 0, i)
     
-    print(arr)
-
-
+    print("After sorting: ",arr)
 """
 Tim Sort
 Insertion Sort + Merge Sort 
