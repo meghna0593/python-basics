@@ -1,6 +1,8 @@
 def get_input():
-    input_list = [3, 6, 8, 10, 1, 2, 1]
+    input_list = [3,5,4,1,6,2]
     return input_list, len(input_list)
+
+
 """
 Bubble Sort (Ascending Order)
 The largest element gets bubbled up each iteration; hence there will be n-1 total runs
@@ -19,6 +21,7 @@ def bubble_sort():
 
     swap = False # gives a best case of O(n)
     for i in range(n-1,0,-1): # n-1 runs
+        print(i)
         swap = False 
         for j in range(i):
             if numbers[j] > numbers[j+1]:
@@ -151,7 +154,7 @@ def merge_sort_helper(arr):
 
     # merging
     i = j = k = 0 # pointers for left_arr, right_arr and arr
-    while i < len(left_arr) and j < len(right_arr):
+    while i < len(left_arr) and j < len(right_arr): # O(min(n,m))
         if left_arr[i] < right_arr[j]:
             arr[k] = left_arr[i]
             i += 1
@@ -191,9 +194,88 @@ def merge_sort():
     print(numbers)
 
 
-def heap_sort():
-    pass
+def swap(arr, i, j):
+    arr[i], arr[j] = arr[j], arr[i]
 
+def trickle_down(arr, i, upper):
+    largest = i
+    left_child = 2*i+1
+    right_child = 2*i+2
+
+    if left_child < upper and arr[left_child] > arr[largest]:
+        largest = left_child 
+
+    if right_child < upper and arr[right_child] > arr[largest]:
+        largest = right_child
+
+    if largest != i: # not the same element
+        swap(arr, i, largest)
+        trickle_down(arr, largest, upper)
+
+def trickle_down_iterative(arr, i, upper):
+    largest = i
+    while True:
+        left = i*2+1
+        right = i*2+2
+
+        if left < upper and arr[left] > arr[largest]:
+            largest = left
+        if right < upper and arr[right] > arr[largest]:
+            largest = right
+        if largest != i:
+            swap(arr, i, largest)
+            i = largest
+        else:
+            break
+
+"""
+Heap Sort
+First - Heapify into a max heap
+Second - Remove root, replace last leaf node with root (swap root and LLN), trickle down
+
+O(n log n): comparing n things with log n things. We trickle down by comparing elements and deciding 
+which way to go
+To heapify, take the last parent node
+Max heap is used to sort an array in an ascending order
+
+Last Parent = last leaf node is n-1 in a zero-indexed array, hence floor((n-1)/2)
+Since the floor function rounds down to the nearest integer, floor((n-2)/2) is equivalent to ((n-1)/2)
+Leaf nodes we don't have to check as they wont have child nodes to swap
+
+Child=>  (2*parent)+1, (2*parent)+2
+Parent=> floor(child/2)
+
+Reference:
+https://www.youtube.com/watch?v=rbbTd-gkajw&t=1s (aka selection sort using the right data structure)
+https://youtu.be/BzQGPA_v-vc?si=n-hR7xchbW93spSS (intro to heap)
+https://youtu.be/7KhYwHfx40U?si=5jUaw0P60WUOgjbo (add / remove)
+https://youtu.be/6i15PI_VP-E?si=-4DwJC16_FvaNkND (tricke up, child/parent equation)
+https://youtu.be/jHZu1GV27tI?si=SKJugP1ix1L_Mv9S (trickle down)
+https://youtu.be/LbB357_RwlY?si=VJ3kRYTVCn_VjKz9 (heap sort explanation)
+https://youtu.be/laYrbOAmuvQ?si=ars9XzaSdBC5qOL9 (heap sort implementation)
+
+"""
+def heap_sort():
+    arr, n = get_input()
+    print("Before creating max heap: ",arr)
+
+    # build a max heap
+    for i in range(n // 2 - 1, -1, -1): # loop until the last parent node
+        # trickle_down(arr, i, n)
+        trickle_down_iterative(arr, i, n)
+
+    print("Afer creating max heap: ",arr)
+
+    # sorting
+    # extract elements one by one, with root
+    # 1. Swap root with last leaf
+    # 2. trickle down / heapify
+    for i in range(n - 1, 0, -1): 
+        swap(arr, 0, i) # here we swap the first element with the i value because the i value will always be the greater value in that iteration
+        # trickle_down(arr, 0, i) # here we heapify to get the greatest value of that iteration in idx 0
+        trickle_down_iterative(arr, 0, i)
+    
+    print("After sorting: ",arr)
 """
 Tim Sort
 Insertion Sort + Merge Sort 
@@ -203,6 +285,7 @@ Merge logic of merge sort is used to merge these runs.
 Merge method performs well when the size of sub-arrays is a power of two. So the run size is usually 
 picked between 32 and 64
 
+
 Reference:
 https://youtu.be/GhP5WbE4GYo?si=4IVNeOhcsXqWCXiD
 https://youtu.be/6lkH8uvatTY?si=OPiCevSHmMKRd24h
@@ -210,11 +293,14 @@ https://youtu.be/6lkH8uvatTY?si=OPiCevSHmMKRd24h
 def tim_sort():
     pass
 
+
 def bogo_sort():
     pass
 
+
 def radix_sort():
     pass
+
 
 def sorting_algo(case):
     while True:
@@ -258,7 +344,7 @@ def sorting_algo(case):
 3. Insertion Sort: https://youtu.be/8mJ-OhcfpYg?si=kA_GaqYuIXdZjI_x
 4. Merge Sort: https://www.youtube.com/watch?v=3j0SWDX4AtU
 5. Quick Sort: https://www.youtube.com/watch?v=Vtckgz38QHs
-6. Heap Sort: https://www.youtube.com/watch?v=rbbTd-gkajw&t=1s (aka selection sort using the right data structure)
+6. Heap Sort: https://www.youtube.com/watch?v=rbbTd-gkajw&t=1s 
 7. Tim Sort: https://www.youtube.com/watch?v=rbbTd-gkajw&t=1s
 8. Counting Sort: https://www.youtube.com/watch?v=rbbTd-gkajw&t=1s
 9. Radix Sort: https://www.youtube.com/watch?v=rbbTd-gkajw&t=1s
